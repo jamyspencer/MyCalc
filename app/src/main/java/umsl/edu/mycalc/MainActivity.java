@@ -30,6 +30,10 @@ public class MainActivity extends AppCompatActivity {
         Button but_multiply = (Button) findViewById(R.id.multiply);
         Button but_divide = (Button) findViewById(R.id.divide);
         Button but_equals = (Button) findViewById(R.id.equals);
+        Button but_flip = (Button) findViewById(R.id.flip_sign);
+        Button but_decimal = (Button) findViewById(R.id.decimal);
+        Button but_clear = (Button) findViewById(R.id.clear);
+
 
 
         final TextView screen_value = (TextView) findViewById(R.id.total);
@@ -109,6 +113,21 @@ public class MainActivity extends AppCompatActivity {
         but_equals.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 screen_value.setText(mModel.doEquals());
+            }
+        });
+        but_flip.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                screen_value.setText(mModel.flipSign());
+            }
+        });
+        but_decimal.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                screen_value.setText(mModel.putDecimal());
+            }
+        });
+        but_clear.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                screen_value.setText(mModel.clear());
             }
         });
     }
