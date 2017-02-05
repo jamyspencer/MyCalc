@@ -7,6 +7,7 @@ public class CalcModel {
     private String display = "0";
     private char operator = '\0';
     private double total = 0;
+    private boolean num_already_totalled = false;
 
     String putDecimal(){
         if(this.display.indexOf('.') == -1) {
@@ -18,6 +19,10 @@ public class CalcModel {
     String enterNum(char num) {
         if(display.compareTo("0") == 0){
             this.display = String.valueOf(num);
+        }
+        else if (this.num_already_totalled){
+            this.display = String.valueOf(num);
+            this.num_already_totalled = false;
         }
         else {
             this.display = this.display + num;
@@ -32,6 +37,7 @@ public class CalcModel {
 
     String setOperator(char op){
         this.operator = op;
+        this.num_already_totalled = false;
         if(this.display.compareTo("") != 0) {
             this.total = Double.parseDouble(this.display);
             this.display = "";
@@ -52,13 +58,14 @@ public class CalcModel {
             return this.display;
         }
 
+        this.num_already_totalled = true;
         this.display = String.valueOf(this.total);
         this.operator = '\0';
         return this.display;
     }
 
     String flipSign(){
-        if (this.display.compareTo("0") != 0){
+        if (this.display.compareTo("0") != 0 && this.display.compareTo("") != 0){
             this.display = String.valueOf(Double.valueOf(this.display) * -1);
         }
         return this.display;
